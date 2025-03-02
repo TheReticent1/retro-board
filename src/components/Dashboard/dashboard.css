@@ -1,0 +1,86 @@
+.retro-container {
+    text-align: center;
+    padding: 20px;
+    background: url('../../../public/hp.webp') center/cover;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'IM Fell English SC', serif;
+    padding-top: 100px;
+}  
+.harry-potter-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px black;
+} 
+.add-card {
+    font-family: 'IM Fell English SC', serif;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(30, 29, 28);
+    display: flex;
+    justify-content: center;
+} 
+input, select, button {
+    margin: 5px;
+    padding: 8px;
+    font-family: inherit;
+}  
+button {
+    background-color: #0078D4;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #fdfdfd;
+}
+button:hover {
+    box-shadow: 0 0 10px #0078D4;
+}
+.columns {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 100px;
+}
+.column {
+    padding: 20px;
+    border-radius: 8px;
+    width: 23%;
+    min-height: 300px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+h2 {
+    color: rgb(127, 129, 136);
+}
+.card {
+    background: #232323;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.add-card input {
+    width: 50%;
+    border: none;
+    background: #101010;
+    border-radius: 5px;
+    padding: 20px;
+    color: #fdfdfd;
+    outline: none;
+    font-size: 16px;
+}
+.add-card select {
+    max-width: 20%;
+    background: #101010;
+    color: #fdfdfd;
+    padding: 20px;
+    border: none;
+    outline: none;
+}
