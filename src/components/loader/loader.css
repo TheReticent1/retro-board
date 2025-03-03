@@ -1,0 +1,81 @@
+svg{
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left:0;
+	right:0;
+	margin: auto;
+}
+
+#icon
+{
+	transform: scale(0.5);
+}
+
+#lines {
+	transform-origin: 53% 46%;
+	animation: turn 1.5s forwards infinite linear;
+}
+
+@keyframes turn
+{
+	from{
+		
+		transform: scale(1);
+		opacity: 1;
+	}
+	to{
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+.ster-geel {
+	transform-origin: 53% 46%;
+	animation: stars 4s forwards infinite linear;
+	animation-delay: 500ms;
+}
+
+.ster-wit {
+	transform-origin: 53% 46%;
+	animation: stars 4s forwards infinite linear;
+	animation-delay: 500ms;
+}
+
+@keyframes stars
+{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+#toverstok{
+transform-origin: 15% 70%;
+	animation: move 2s alternate infinite;
+}
+
+@keyframes move{
+	from{
+		transform: rotate(-5deg);
+	}
+	to{
+		transform: rotate(5deg);
+	}
+}
+
+#circle
+{
+	transform-origin: 50% 50%;
+	animation: bigger 2s alternate infinite;
+}
+@keyframes bigger{
+	from{
+		transform: scale(1);
+	}
+	to{
+		transform: scale(1.02);
+	}
+}

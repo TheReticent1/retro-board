@@ -1,27 +1,3 @@
-.retro-container {
-    text-align: center;
-    padding: 20px;
-    background: url('../../../public/hp.webp') center/cover;
-    min-height: 100vh;
-    color: #fff;
-    font-family: 'IM Fell English SC', serif;
-    padding-top: 100px;
-}  
-.harry-potter-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px black;
-} 
-.add-card {
-    font-family: 'IM Fell English SC', serif;
-    padding: 20px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgb(30, 29, 28);
-    display: flex;
-    justify-content: center;
-} 
 input, select, button {
     margin: 5px;
     padding: 8px;

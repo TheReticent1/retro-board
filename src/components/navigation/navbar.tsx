@@ -26,17 +26,19 @@ const NavBar = () => {
           <div className="nav-items">
             <ul>
               <li>
-                <Link to={"/"} className={isActive("/")}>
+                <Link to={"/"} className={isActive("/")} key="page1">
                   Hogwarts
                 </Link>
               </li>
               <li>
-                <Link to={"/hero"} className={isActive("/hero")}>
+                <Link to={"/hero"} className={isActive("/hero")} key="page2">
                   Vote for Harry Potter
                 </Link>
               </li>
               <li>
-                <Link to={"/"}>Score</Link>
+                <Link to={"/"} key="page3">
+                  Score
+                </Link>
               </li>
             </ul>
           </div>
