@@ -1,4 +1,4 @@
-button {
+.h-button {
     border: none;
     padding: 10px 15px;
     font-weight: bold;
@@ -9,30 +9,82 @@ button {
     padding: 8px;
     font-family: inherit;
 }
-button:hover {
+.h-button:hover {
     box-shadow: 0 0 10px #323232;
 }
-button:nth-child(2) {
+.h-button:nth-child(2) {
     background-color: #1A237E;
 }
-button:nth-child(3) {
+.h-button:nth-child(3) {
     background-color: #6D4C41;
 }
-button:nth-child(4) {
+.h-button:nth-child(4) {
     background-color: #D32F2F;
 }
-button:nth-child(5) {
+.h-button:nth-child(5) {
     background-color: #512DA8;
 }
-button:nth-child(6) {
+.h-button:nth-child(6) {
     background-color: #212121;
 }
-button:nth-child(7) {
+.h-button:nth-child(7) {
     background-color: #388E3C;
 }
-button:nth-child(8) {
+.h-button:nth-child(8) {
     background-color: #B0BEC5;
 }
-button:nth-child(9) {
+.h-button:nth-child(9) {
     background-color: #FBC02D;
+}
+.h-button:nth-child(10) {
+    background-color: #f78809;
+}
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.card-container .h-card{
+    width: 200px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    /* min-height: 100px; */
+    border: 2px solid black;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.h-card h2 {
+    margin: 0;
+    font-weight: normal;
+}
+.h-card p {
+    margin: 5px 0;
+}
+.votes {
+    font-size: 18px;
+}
+.h-card:nth-child(1) {
+    background-color: rgb(26 35 126 / 70%);
+}
+.h-card:nth-child(2) {
+    background-color: rgb(109 76 65 / 70%);
+}
+.h-card:nth-child(3) {
+    background-color: rgb(211 47 47 / 70%);;
+}
+.h-card:nth-child(4) {
+    background-color: rgb(81 45 168 / 70%);
+}
+.h-card:nth-child(5) {
+    background-color: rgb(33 33 33 / 70%);
+}
+.h-card:nth-child(6) {
+    background-color: rgb(56 142 60 / 70%);
+}
+.h-card:nth-child(7) {
+    background-color: rgb(176 190 197 / 70%);
+}
+.h-card:nth-child(8) {
+    background-color: rgb(251 192 45 / 70%);
 }

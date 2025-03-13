@@ -78,7 +78,7 @@ const Dashboard = () => {
                 className="column"
                 style={{ backgroundColor: columnColors[columnId] || "#f5f5f5" }}
               >
-                <h2>{columnId}</h2>
+                <h2 className="h2">{columnId}</h2>
                 {cards.map((card, index) => (
                   <div
                     key={index}
@@ -122,7 +122,9 @@ const Dashboard = () => {
               ))
             : null}
         </select>
-        <button onClick={addCard}>✨ Add Spell</button>
+        <button onClick={addCard} className="d-button">
+          ✨ Add Spell
+        </button>
       </div>
     </div>
   );

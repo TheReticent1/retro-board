@@ -3,7 +3,7 @@ input, select, button {
     padding: 8px;
     font-family: inherit;
 }  
-button {
+.d-button {
     background-color: #0078D4;
     border: none;
     padding: 10px 15px;
@@ -12,7 +12,7 @@ button {
     border-radius: 8px;
     color: #fdfdfd;
 }
-button:hover {
+.d-button:hover {
     box-shadow: 0 0 10px #0078D4;
 }
 .columns {
@@ -29,7 +29,7 @@ button:hover {
     border: 2px solid black;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
-h2 {
+.h2 {
     color: rgb(127, 129, 136);
 }
 .card {
