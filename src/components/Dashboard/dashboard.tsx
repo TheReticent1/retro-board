@@ -109,6 +109,7 @@ const Dashboard = () => {
           placeholder="Enter your magical insight..."
           value={newCard}
           onChange={(e) => setNewCard(e.target.value)}
+          className="input"
         />
         <select
           value={selectedColumn}

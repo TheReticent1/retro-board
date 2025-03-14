@@ -1,0 +1,49 @@
+.assess-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.assess-card {
+    width: 40%;
+    background: rgb(33 33 33 / 90%);
+    border-radius: 8px;
+    border: 2px solid #000000;
+    padding: 20px;
+    margin: 20px;
+}
+.progress {
+    width: 80%;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 20px;
+    height: 10px;
+    -webkit-appearance: none;
+    transition: background 0.3s ease-in-out;
+}
+.progress:hover {
+    cursor: grab;
+}
+.assess-h2 {
+    margin: 0;
+    font-weight: normal;
+}
+.assess-span{
+    color: #7a7b82;
+    font-size: 18px;
+}
+.sub-button {
+    width: 300px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: inherit;
+}
+.progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: rgb(115, 115, 220);
+    border-radius: 50%;
+    cursor: pointer;
+  }

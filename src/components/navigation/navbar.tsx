@@ -22,22 +22,28 @@ const NavBar = () => {
     <>
       <div className="navbar-container">
         <div className={`navbar ${scrolled ? "opacity-9" : ""}`}>
-          <div className="branding">Minerva</div>
+          <div className="branding">
+            <span style={{ color: "#ffffff" }}>👸🏻</span>Minerva
+          </div>
           <div className="nav-items">
             <ul>
               <li>
                 <Link to={"/"} className={isActive("/")} key="page1">
-                  Hogwarts
+                  🚂 Hogwarts
                 </Link>
               </li>
               <li>
                 <Link to={"/hero"} className={isActive("/hero")} key="page2">
-                  Vote for Harry Potter
+                  🪄 Vote for Hermione
                 </Link>
               </li>
               <li>
-                <Link to={"/"} key="page3">
-                  Score
+                <Link
+                  to={"/assessment"}
+                  className={isActive("/assessment")}
+                  key="page3"
+                >
+                  🗺️ Marauder’s Map Assessment
                 </Link>
               </li>
             </ul>

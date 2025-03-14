@@ -65,3 +65,15 @@ body {
   box-shadow: 0 0 10px #323232;
   cursor: pointer;
 }
+.d-button {
+  background-color: #0078D4;
+  border: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #fdfdfd;
+}
+.d-button:hover {
+  box-shadow: 0 0 10px #0078D4;
+}

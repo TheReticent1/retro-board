@@ -82,8 +82,8 @@ const characters = [
   },
   {
     id: 109,
-    actor: "Rubeus Hagrid 🦉",
-    role: "Keeper of Keys and Grounds at Hogwarts, half-giant, and a caring protector of magical creatures.",
+    actor: "Minerva McGonagall 🦁",
+    role: "Strict but fair Transfiguration professor and head of Gryffindor.",
   },
 ];
 
@@ -91,7 +91,7 @@ const Hero = () => {
   return (
     <div>
       <div className="retro-container">
-        <h1 className="harry-potter-title">🤓 Harry Potter of Sprint-14 🏆</h1>
+        <h1 className="harry-potter-title">📚 Hermione of Sprint-14 🏆</h1>
         <div className="card-container">
           {members.map((member, index) => (
             <div className="h-card" key={`card${index}`}>
