@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { db } from "./firebase";
 import { doc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
-import { ColumnType, initialColumns } from "../components/dashboard/dashboard";
+import { ColumnType, initialColumns } from "../components/dashboard/Dashboard";
 
 export const saveBoard = async (value: { [key: string]: string[] }) => {
   try {
