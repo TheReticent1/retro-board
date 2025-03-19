@@ -7,6 +7,7 @@ const Dashboard = lazy(() => import("./components/dashboard/dashboard"));
 const Hero = lazy(() => import("./components/hero/hero"));
 const Loader = lazy(() => import("./components/loader/loader"));
 const Score = lazy(() => import("./components/score/score"));
+const Summary = lazy(() => import("./components/summary/summary"));
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
           <Route element={<Dashboard key="page1" />} path="/" />
           <Route element={<Hero key="page2" />} path="/hero" />
           <Route element={<Score key="page3" />} path="/assessment" />
+          <Route element={<Summary key="page4" />} path="/summary" />
         </Routes>
       </Suspense>
     </>

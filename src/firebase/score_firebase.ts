@@ -1,6 +1,7 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { initialStateScore } from "../data.constant";
+import { Dispatch, SetStateAction } from "react";
 
 export const saveOrUpdateScore = async (id: string, updatedScore: Partial<typeof initialStateScore>) => {
   const docRef = doc(db, "scores", id); 
@@ -32,3 +33,18 @@ export const getScore = async(id:string) => {
         console.error(error)
     }
 }
+
+export const getAllRecordsScores = (setRecords:Dispatch<SetStateAction<{ [key: string]: string }[] | undefined>>) => {
+  const collectionRef = collection(db, "scores");
+
+  return onSnapshot(collectionRef, (querySnapshot) => {
+    const records = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setRecords(records); // Update state with real-time data
+  }, 
+  (error) => {
+    console.error("Error fetching real-time records:", error);
+  });
+};

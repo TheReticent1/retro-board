@@ -104,3 +104,66 @@ export const initialStateScore:{ [key: string]: number } = {
     confidence: 0,
     efficiency: 0,
 };
+
+export const assessments = [
+  {
+    title: "🦉 The Deluminator Effect (Clarity) 🏮",
+    description:
+      " Ensuring clear goals, tasks, and expectations, so no one is lost in the dark.",
+    key: "clarity",
+  },
+  {
+    title: "⚡ The Felix Felicis Factor (Energy) 🍀",
+    description:
+      "Measuring team motivation and enthusiasm to keep the magic alive.",
+    key: "energy",
+  },
+  {
+    title: "🛡️ The Protego Shield (Psychological Safety) ✨",
+    description:
+      "Creating a safe space where everyone can share ideas without fear.",
+    key: "psychological_safety",
+  },
+  {
+    title: "⏳ The Time-Turner Balance (Work-Life Balance) ⚖️",
+    description: "Checking if we’re managing work and personal life wisely.",
+    key: "work_life_balance",
+  },
+  {
+    title: "🦁 The Gryffindor Spirit (Confidence) 💪",
+    description: "Evaluating self-belief and courage in decision-making.",
+    key: "confidence",
+  },
+  {
+    title: "⚙️ The Wingardium Leviosa Flow (Efficiency) 🚀",
+    description: "Ensuring smooth workflows with minimal friction.",
+    key: "efficiency",
+  },
+];
+
+export const assessmentsSummary = [
+  {
+    title: "🦉Clarity🏮",
+    key: "clarity",
+  },
+  {
+    title: "⚡ Energy 🍀",
+    key: "energy",
+  },
+  {
+    title: "🛡️ Psychological Safety ✨",
+    key: "psychological_safety",
+  },
+  {
+    title: "⏳ Work-Life Balance ⚖️",
+    key: "work_life_balance",
+  },
+  {
+    title: "🦁 Confidence 💪",
+    key: "confidence",
+  },
+  {
+    title: "⚙️ Efficiency 🚀",
+    key: "efficiency",
+  },
+];

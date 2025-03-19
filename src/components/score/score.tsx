@@ -1,45 +1,11 @@
 import { useEffect, useState } from "react";
 import "./score.css";
-import { initialStateScore } from "../../data.constant";
+import { assessments, initialStateScore } from "../../data.constant";
 import { getScore, saveOrUpdateScore } from "../../firebase/score_firebase";
-
-const assessments = [
-  {
-    title: "🦉 The Deluminator Effect (Clarity) 🏮",
-    description:
-      " Ensuring clear goals, tasks, and expectations, so no one is lost in the dark.",
-    key: "clarity",
-  },
-  {
-    title: "⚡ The Felix Felicis Factor (Energy) 🍀",
-    description:
-      "Measuring team motivation and enthusiasm to keep the magic alive.",
-    key: "energy",
-  },
-  {
-    title: "🛡️ The Protego Shield (Psychological Safety) ✨",
-    description:
-      "Creating a safe space where everyone can share ideas without fear.",
-    key: "psychological_safety",
-  },
-  {
-    title: "⏳ The Time-Turner Balance (Work-Life Balance) ⚖️",
-    description: "Checking if we’re managing work and personal life wisely.",
-    key: "work_life_balance",
-  },
-  {
-    title: "🦁 The Gryffindor Spirit (Confidence) 💪",
-    description: "Evaluating self-belief and courage in decision-making.",
-    key: "confidence",
-  },
-  {
-    title: "⚙️ The Wingardium Leviosa Flow (Efficiency) 🚀",
-    description: "Ensuring smooth workflows with minimal friction.",
-    key: "efficiency",
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const Score = () => {
+  const navigate = useNavigate();
   const [score, setScore] = useState(initialStateScore);
   const [id, setId] = useState("0");
   useEffect(() => {
@@ -82,37 +48,51 @@ const Score = () => {
 
   const handleSubmit = async () => {
     await saveOrUpdateScore(id, score);
-    console.log(score);
+    setTimeout(() => window.alert("Assessment submitted!"), 1000);
   };
   return (
     <div className="retro-container">
-      <h1 className="harry-potter-title">
-        The Marauder’s Map Review: Tracking Our Team’s Magic 🗺️
-      </h1>
-      <div className="assess-container">
-        {assessments.map((assessment) => (
-          <div key={assessment.key} className="assess-card">
-            <h2 className="assess-h2">
-              {assessment.title}{" "}
-              <span className="assess-span">- {assessment.description}</span>
-            </h2>
-            <input
-              type="range"
-              min="1"
-              max="10"
-              value={score[assessment.key]}
-              onChange={(e) =>
-                handleScoreChange(assessment, Number(e.target.value))
-              }
-              className="progress"
-              style={{ background: getColor(score[assessment.key]) }}
-            />
+      {localStorage.getItem("selectedRole") ? (
+        <div className="">
+          <h1 className="harry-potter-title">
+            The Marauder’s Map Review: Tracking Our Team’s Magic 🗺️
+          </h1>
+          <div className="assess-container">
+            {assessments.map((assessment) => (
+              <div key={assessment.key} className="assess-card">
+                <h2 className="assess-h2">
+                  {assessment.title}{" "}
+                  <span className="assess-span">
+                    - {assessment.description}
+                  </span>
+                </h2>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  value={score[assessment.key]}
+                  onChange={(e) =>
+                    handleScoreChange(assessment, Number(e.target.value))
+                  }
+                  className="progress"
+                  style={{ background: getColor(score[assessment.key]) }}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <button onClick={handleSubmit} className="d-button sub-button">
-        ✨ Submit Assessment
-      </button>
+          <button onClick={handleSubmit} className="d-button sub-button">
+            ✨ Submit Assessment
+          </button>
+          <button
+            onClick={() => navigate("/summary")}
+            className="d-button sub-button"
+          >
+            ✨ Summary
+          </button>
+        </div>
+      ) : (
+        <h1 className="harry-potter-title">Select Your Character First</h1>
+      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import {
   giveVote,
   updateCharacterSelection,
 } from "../../firebase/hero_firebase";
+import Loader from "../loader/loader";
 
 const Hero = () => {
   const [characters, setCharacters] = useState<CharacterDto[]>([]);
@@ -82,20 +83,24 @@ const Hero = () => {
     <div>
       <div className="retro-container">
         <h1 className="harry-potter-title">📚 Hermione of Sprint-14 🏆</h1>
-        <div className="card-container">
-          {members.map((member, index) => (
-            <div className="h-card" key={`card${index}`}>
-              <h2>{member.name}</h2>
-              {/* <p>{member.position}</p> */}
-              <p className="votes">Votes: {member.likes.length}</p>
-              {localStorage.getItem("selectedRole") ? (
-                <button className="like-btn" onClick={() => voteHero(member)}>
-                  👍
-                </button>
-              ) : null}
-            </div>
-          ))}
-        </div>
+        {members.length ? (
+          <div className="card-container">
+            {members.map((member, index) => (
+              <div className="h-card" key={`card${index}`}>
+                <h2>{member.name}</h2>
+                {/* <p>{member.position}</p> */}
+                <p className="votes">Votes: {member.likes.length}</p>
+                {localStorage.getItem("selectedRole") ? (
+                  <button className="like-btn" onClick={() => voteHero(member)}>
+                    👍
+                  </button>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Loader />
+        )}
         <div id="fireworks-container"></div>
       </div>
 
