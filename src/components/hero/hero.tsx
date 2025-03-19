@@ -1,93 +1,83 @@
+import { useEffect, useState } from "react";
 import { startMainFireworkShow } from "../../animations/fireworks/fireworks";
 import "./hero.css";
-const members = [
-  { name: "Shefali", position: "Team Manager", likes: 0 },
-  {
-    name: "Ravindra",
-    position: "Team lead",
-    likes: 0,
-  },
-  {
-    name: "Bhushan",
-    position: "Project owner",
-    likes: 0,
-  },
-  {
-    name: "Monali",
-    position: "Senior Software developer",
-    likes: 0,
-  },
-  {
-    name: "Sarvesh",
-    position: "Software developer",
-    likes: 0,
-  },
-  {
-    name: "Kamlesh",
-    position: "Senior Software developer",
-    likes: 0,
-  },
-  {
-    name: "Amol",
-    position: "Quality Analyst",
-    likes: 0,
-  },
-  {
-    name: "Amruta",
-    position: "Quality Analyst",
-    likes: 0,
-  },
-];
-
-const characters = [
-  {
-    id: 101,
-    actor: "Harry Potter ⚡",
-    role: "The Boy Who Lived, Gryffindor, and the chosen one to defeat Voldemort.",
-  },
-  {
-    id: 102,
-    actor: "Hermione Granger 📚",
-    role: "The brightest witch of her age, known for her intelligence and loyalty.",
-  },
-  {
-    id: 103,
-    actor: "Ron Weasley 🏆",
-    role: "Harry’s best friend, brave, funny, and a loyal Gryffindor.",
-  },
-  {
-    id: 104,
-    actor: "Albus Dumbledore 🧙‍♂️",
-    role: "Headmaster of Hogwarts, wise, and the only wizard Voldemort feared.",
-  },
-  {
-    id: 105,
-    actor: "Severus Snape 🖤",
-    role: "Potions master, mysterious, and secretly protected Harry",
-  },
-  {
-    id: 106,
-    actor: "Lord Voldemort 🐍",
-    role: "The Dark Lord, feared by all, and Harry’s greatest enemy.",
-  },
-  {
-    id: 107,
-    actor: "Sirius Black 🐶",
-    role: "Harry’s godfather, wrongly accused, and a member of the Order of the Phoenix.",
-  },
-  {
-    id: 108,
-    actor: "Draco Malfoy 🐍",
-    role: "Slytherin rival, often arrogant, but not entirely evil.",
-  },
-  {
-    id: 109,
-    actor: "Minerva McGonagall 🦁",
-    role: "Strict but fair Transfiguration professor and head of Gryffindor.",
-  },
-];
+import { CharacterDto, MemberDto } from "../../shared.interface";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import {
+  getOrSaveCharacters,
+  getOrSaveTeamMembers,
+  giveVote,
+  updateCharacterSelection,
+} from "../../firebase/hero_firebase";
 
 const Hero = () => {
+  const [characters, setCharacters] = useState<CharacterDto[]>([]);
+  const [members, setMembers] = useState<MemberDto[]>([]);
+  const [disableBtn, setDisableBtn] = useState(false);
+  const [currentRole, setCurrentRole] = useState<{
+    id: number;
+    actor: string;
+  }>();
+
+  useEffect(() => {
+    if (localStorage.getItem("selectedRole")) {
+      const currentRole = localStorage.getItem("selectedRole");
+      if (currentRole) {
+        setCurrentRole(JSON.parse(currentRole));
+      }
+      setDisableBtn(true);
+    }
+    const docRefMembers = doc(db, "teamMembers", "members");
+    const docRefCharacters = doc(db, "harryPotter", "characters");
+
+    const memberUnsubscribe = onSnapshot(docRefMembers, (docSnap) => {
+      if (docSnap.exists()) {
+        setMembers(docSnap.data().list);
+      } else {
+        getOrSaveTeamMembers();
+      }
+    });
+
+    const characterUnsubscribe = onSnapshot(docRefCharacters, (docSnap) => {
+      if (docSnap.exists()) {
+        setCharacters(docSnap.data().list);
+      } else {
+        getOrSaveCharacters();
+      }
+    });
+
+    return () => {
+      memberUnsubscribe();
+      characterUnsubscribe();
+    };
+  }, []);
+
+  const chooseCharacter = async (character: CharacterDto) => {
+    setDisableBtn(true);
+    const data = await updateCharacterSelection(character.id, true);
+    if (data === character.id) {
+      localStorage.setItem(
+        "selectedRole",
+        JSON.stringify({ id: data, actor: character.actor })
+      );
+      setCurrentRole({ id: data, actor: character.actor });
+    } else {
+      setDisableBtn(false);
+    }
+  };
+
+  const voteHero = async (member: MemberDto) => {
+    if (currentRole && !member.likes.includes(currentRole?.id)) {
+      member.likes.push(currentRole.id);
+      try {
+        await giveVote(currentRole.id, member);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <div>
       <div className="retro-container">
@@ -97,7 +87,12 @@ const Hero = () => {
             <div className="h-card" key={`card${index}`}>
               <h2>{member.name}</h2>
               {/* <p>{member.position}</p> */}
-              <p className="votes">Votes: {member.likes}</p>
+              <p className="votes">Votes: {member.likes.length}</p>
+              {localStorage.getItem("selectedRole") ? (
+                <button className="like-btn" onClick={() => voteHero(member)}>
+                  👍
+                </button>
+              ) : null}
             </div>
           ))}
         </div>
@@ -113,6 +108,8 @@ const Hero = () => {
             title={character.role}
             key={`character${character.id}`}
             className="h-button"
+            disabled={character.selected || disableBtn}
+            onClick={() => chooseCharacter(character)}
           >
             {character.actor}
           </button>

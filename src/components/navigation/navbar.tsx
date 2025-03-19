@@ -48,7 +48,11 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <div className="clock"></div>
+          <div className="clock">
+            {localStorage.getItem("selectedRole")
+              ? JSON.parse(localStorage.getItem("selectedRole") || "")?.actor
+              : null}
+          </div>
         </div>
       </div>
     </>

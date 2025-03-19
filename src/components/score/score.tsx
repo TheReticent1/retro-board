@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./score.css";
+import { initialStateScore } from "../../data.constant";
+import { getScore, saveOrUpdateScore } from "../../firebase/score_firebase";
 
 const assessments = [
   {
@@ -36,22 +38,33 @@ const assessments = [
     key: "efficiency",
   },
 ];
-const initialStateScore: { [key: string]: number } = {
-  clarity: 0,
-  energy: 0,
-  psychological_safety: 0,
-  work_life_balance: 0,
-  confidence: 0,
-  efficiency: 0,
-};
+
 const Score = () => {
   const [score, setScore] = useState(initialStateScore);
+  const [id, setId] = useState("0");
+  useEffect(() => {
+    getUserScore();
+  }, []);
+
+  const getUserScore = async () => {
+    const currentRole = localStorage.getItem("selectedRole");
+    if (currentRole) {
+      const actor = JSON.parse(currentRole || "");
+      if (actor) {
+        setId(String(actor.id));
+        const data = await getScore(String(actor.id));
+        if (data) {
+          setScore(data);
+        }
+      }
+    }
+  };
   const getColor = (val: number) => {
-    if (val > 1 && val <= 3) return "red"; // 0-3: Bad
-    if (val > 3 && val <= 5) return "orange"; // 3-5: Low
-    if (val > 5 && val <= 7) return "yellow"; // 5-7: Medium
+    if (val > 1 && val <= 3) return "red";
+    if (val > 3 && val <= 5) return "orange";
+    if (val > 5 && val <= 7) return "yellow";
     if (val > 7) return "green";
-    return "white"; // 7-10: Good
+    return "white";
   };
   const handleScoreChange = (
     assessment: {
@@ -67,7 +80,8 @@ const Score = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    await saveOrUpdateScore(id, score);
     console.log(score);
   };
   return (

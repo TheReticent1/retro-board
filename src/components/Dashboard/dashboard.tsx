@@ -5,10 +5,10 @@ import {
   updateBoard,
 } from "../../firebase/board_db_operations";
 import Loader from "../loader/loader";
-import {
-  startMainFireworkShow,
-  startRandomFireworks,
-} from "../../animations/fireworks/fireworks";
+// import {
+//   startMainFireworkShow,
+//   startRandomFireworks,
+// } from "../../animations/fireworks/fireworks";
 
 export type ColumnType = {
   [key: string]: string[];
@@ -98,12 +98,12 @@ const Dashboard = () => {
       </div>
 
       <div className="add-card">
-        <button onClick={() => startMainFireworkShow()} className="emoji-btn">
+        {/* <button onClick={() => startMainFireworkShow()} className="emoji-btn">
           🪄
         </button>
         <button className="emoji-btn" onClick={() => startRandomFireworks()}>
           🎉
-        </button>
+        </button> */}
         <input
           type="text"
           placeholder="Enter your magical insight..."
