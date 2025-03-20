@@ -68,7 +68,7 @@ const Dashboard = () => {
     <div>
       <div className="retro-container">
         <h1 className="harry-potter-title">
-          🧙‍♂️ Hogwarts Retro Board Sprint-14 ⚡
+          🧙‍♂️ Hogwarts Retro Board Sprint-15 ⚡
         </h1>
         {columns ? (
           <div className="columns">

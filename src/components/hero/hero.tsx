@@ -82,7 +82,7 @@ const Hero = () => {
   return (
     <div>
       <div className="retro-container">
-        <h1 className="harry-potter-title">📚 Hermione of Sprint-14 🏆</h1>
+        <h1 className="harry-potter-title">📚 Hermione of Sprint-15 🏆</h1>
         {members.length ? (
           <div className="card-container">
             {members.map((member, index) => (

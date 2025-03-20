@@ -8,6 +8,7 @@ const Summary = () => {
   const navigate = useNavigate();
   const [score, setScore] = useState(initialStateScore);
   const [records, setRecords] = useState<{ [key: string]: string }[]>();
+  const [count, setCount] = useState(0);
   useEffect(() => {
     const unsubscribe = getAllRecordsScores(setRecords);
 
@@ -24,6 +25,7 @@ const Summary = () => {
     const sum: any = {};
     const avg: any = {};
     const totalEntries = data.length;
+    setCount(totalEntries);
     data.forEach((obj) => {
       Object.keys(obj).forEach((key: string) => {
         if (key !== "id") {
@@ -47,6 +49,7 @@ const Summary = () => {
   return (
     <div className="retro-container">
       <h1 className="harry-potter-title">Assessment Summary Sprint 15 🗺️</h1>
+      <h2>{count} people took assessment</h2>
       <div className="assess-container">
         {assessmentsSummary.map((assessment) => (
           <div key={assessment.key} className="assess-card">
